@@ -27,17 +27,22 @@
 const timer = {
   strat() {
     // Сохраняем текущее время старта
-    const statrTime = Date.now();
+    const starTime = Date.now();
 
     setInterval(() => {
       // На момент вызова этой функции
       const currentTime = Date.now();
       //   console.log('🚀 ~ setInterval ~ currentTime', currentTime);
+      // Вычисляем разницу
+      const deltaTime = currentTime - starTime;
 
       // Отнимаем время текущее от стартового
-      console.log(currentTime - statrTime);
-
-      // Делаем чтобы в консоле выводилось в формате время (хх:хх:хх)
+      // console.log(currentTime - starTime);
+      const timeComponents = getTimeComponents(deltaTime);
+      console.log(
+        '🚀 ~ file: data.js:42 ~ setInterval ~ timeComponents',
+        timeComponents
+      );
     }, 1000);
   },
 };
