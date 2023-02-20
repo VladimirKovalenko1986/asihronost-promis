@@ -25,7 +25,7 @@
 // * Таймер
 
 const timer = {
-  strat() {
+  start() {
     // Сохраняем текущее время старта
     const starTime = Date.now();
 
@@ -39,15 +39,12 @@ const timer = {
       // Отнимаем время текущее от стартового
       // console.log(currentTime - starTime);
       const timeComponents = getTimeComponents(deltaTime);
-      console.log(
-        '🚀 ~ file: data.js:42 ~ setInterval ~ timeComponents',
-        timeComponents
-      );
+      console.log('🚀 ~ setInterval ~ timeComponents:', timeComponents);
     }, 1000);
   },
 };
 
-timer.strat();
+timer.start();
 
 // Функция которая будет делать чтобы в консоле выводилось в формате время (хх:хх:хх)
 // Код взят с адской копипасты со стека
