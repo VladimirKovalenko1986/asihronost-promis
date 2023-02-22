@@ -1,0 +1,2 @@
+const e=document.getElementById("time"),t=document.getElementById("stopBtn"),n=new Date(`Jan 1, ${(new Date).getFullYear()+1}`);a();const o=setInterval(a,1e3);function a(){const t=Date.now(),o=((new Date).getTime(),n-t),a=Math.floor(o/864e5),r=Math.floor(o/36e5%24),c=Math.floor(o/6e4%60),s=Math.floor(o/1e3%60);e.textContent=`${a} d. ${r} h. ${c} m. ${s} s.`,o<=0&&(l(),e.textContent="Heppy New Year!!!")}function l(){clearInterval(o),alert("The timer has been stopped!")}t.addEventListener("click",l);
+//# sourceMappingURL=index.c7a35fda.js.map
