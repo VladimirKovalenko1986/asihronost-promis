@@ -174,15 +174,56 @@
 
 const timeEL = document.getElementById('time');
 const stopBtnEl = document.getElementById('stopBtn');
+
 // Новий рік - 1 січня 00:00 2024
 // Сьогоднішня дата - 22 лютого 20:20 2023
 // Будемо використовувати setinterval(),
 
-// ?  1. Від нового року видняти поточну дату - таким чином ми отримємо різницю в часі (будемо працювати з міліскундами)
+//  ? 1. Від нового року видняти поточну дату - таким чином ми отримємо різницю в часі (будемо працювати з міліскундами)
 //  ? 2. Отримані міллісекунди в п. 1 переводимо в дні, години, хв, секунди, які лишились до нового року.
 //  ? 3. Показати ці данні користувачцу на сторінці
 
-// * Код из сайта, в стором образце
+// Встановлюємо дату наступного року
+const newYearDate = new Date(`Jan 1, ${new Date().getFullYear() + 1}`);
+
+// Для того щоб був таймер відразу визиваємо функцію перед інтервалом
+countDownTimeToNY();
+
+const timerId = setInterval(countDownTimeToNY, 1000);
+
+stopBtnEl.addEventListener('click', stopInterval);
+
+function countDownTimeToNY() {
+  // Отрімуваємо поточну дату
+  const now = Date.now();
+  // 2 спосіб
+  const now1 = new Date().getTime();
+
+  // Отримуємо різницю - скількі мсек лишилось до нового року
+  const diff = newYearDate - now;
+
+  // Витюгуємо кількіть днів, годин, хв, сек
+  //???????????????????????????? сек /  хв / год / дні
+  const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+  const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
+  const minutes = Math.floor((diff / (1000 * 60)) % 60);
+  const seconds = Math.floor((diff / 1000) % 60);
+
+  timeEL.textContent = `${days} d. ${hours} h. ${minutes} m. ${seconds} s.`;
+
+  // Можно додати перевірку, якщо ми перевалили за нуль(таймер закінчився) ми зупиняємо ойго
+  if (diff <= 0) {
+    stopInterval();
+    timeEL.textContent = 'Heppy New Year!!!';
+  }
+}
+
+function stopInterval() {
+  clearInterval(timerId);
+  alert('The timer has been stopped!');
+}
+
+// * Код из сайта, в старом образце
 
 // Set the date we're counting down to
 // var countDownDate = new Date('Jan 5, 2024 15:37:25').getTime();
