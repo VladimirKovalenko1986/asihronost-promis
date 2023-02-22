@@ -1,3 +1,7 @@
+body {
+  font-family: sans-serif;
+}
+
 a {
   display: block;
   margin: 10px;
@@ -16,4 +20,22 @@ a {
 
 .is-visible {
   opacity: 1;
+}
+
+p {
+  text-align: center;
+  font-size: 60px;
+}
+
+button {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  background-color: red;
+  border: none;
+  color: white;
+  font-size: 40px;
+  cursor: pointer;
+  padding: 5 10;
+  border-radius: 5px;
 }
