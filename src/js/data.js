@@ -172,9 +172,11 @@
 // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 // Написати таймер зворотнього відліку до Нового року, який можна зупинити при натисканні на кнопку STOP
 
-const timeEL = document.getElementById('time');
-const stopBtnEl = document.getElementById('stopBtn');
-const continueBtnEl = document.getElementById('continueBtn');
+// const timeEL = document.getElementById('time');
+// const stopBtnEl = document.getElementById('stopBtn');
+// const continueBtnEl = document.getElementById('continueBtn');
+// let timerId = setInterval(countDownTimeToNY, 1000);
+// let isTimeRun = true;
 
 // Новий рік - 1 січня 00:00 2024
 // Сьогоднішня дата - 22 лютого 20:20 2023
@@ -185,50 +187,57 @@ const continueBtnEl = document.getElementById('continueBtn');
 //  ? 3. Показати ці данні користувачцу на сторінці
 
 // Встановлюємо дату наступного року
-const newYearDate = new Date(`Jan 1, ${new Date().getFullYear() + 1}`);
+// const newYearDate = new Date(`Jan 1, ${new Date().getFullYear() + 1}`);
 
 // Для того щоб був таймер відразу визиваємо функцію перед інтервалом
-countDownTimeToNY();
+// countDownTimeToNY();
 
-let timerId = setInterval(countDownTimeToNY, 1000);
+// stopBtnEl.addEventListener('click', () => {
+//   stopInterval();
 
-stopBtnEl.addEventListener('click', stopInterval);
-continueBtnEl.addEventListener('click', continioInterval);
+// Додаємо не активність кнопці
+//   continueBtnEl.disabled = !isTimeRun;
+//   continueBtnEl.addEventListener('click', () => {
+//     continioInterval();
 
-function countDownTimeToNY() {
-  // Отрімуваємо поточну дату
-  const now = Date.now();
-  // 2 спосіб
-  const now1 = new Date().getTime();
+//Знімаємо не активність кнопці
+//     continueBtnEl.disabled = isTimeRun;
+//   });
+// });
+// function countDownTimeToNY() {
+// Отрімуваємо поточну дату
+//   const now = Date.now();
+// 2 спосіб
+//   const now1 = new Date().getTime();
 
-  // Отримуємо різницю - скількі мсек лишилось до нового року
-  const diff = newYearDate - now;
+// Отримуємо різницю - скількі мсек лишилось до нового року
+//   const diff = newYearDate - now;
 
-  // Витягуємо кількіть днів, годин, хв, сек
-  //???????????????????????????? сек /  хв / год / дні
-  const days = Math.floor(diff / (1000 * 60 * 60 * 24));
-  const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
-  const minutes = Math.floor((diff / (1000 * 60)) % 60);
-  const seconds = Math.floor((diff / 1000) % 60);
+// Витягуємо кількіcть днів, годин, хв, сек
+//???????????????????????????? сек /  хв / год / дні
+//   const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+//   const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
+//   const minutes = Math.floor((diff / (1000 * 60)) % 60);
+//   const seconds = Math.floor((diff / 1000) % 60);
 
-  timeEL.textContent = `${days} d. ${hours} h. ${minutes} m. ${seconds} s.`;
+//   timeEL.textContent = `${days} d. ${hours} h. ${minutes} m. ${seconds} s.`;
 
-  // Можно додати перевірку, якщо ми перевалили за нуль(таймер закінчився) ми зупиняємо ойго
-  if (diff <= 0) {
-    stopInterval();
-    timeEL.textContent = 'Heppy New Year!!!';
-  }
-}
+// Можно додати перевірку, якщо ми перевалили за нуль(таймер закінчився) ми зупиняємо ойго
+//   if (diff <= 0) {
+//     stopInterval();
+//     timeEL.textContent = 'Heppy New Year!!!';
+//   }
+// }
 
-function stopInterval() {
-  clearInterval(timerId);
-  alert('The timer has been stopped!');
-}
+// function stopInterval() {
+//   clearInterval(timerId);
+//   alert('The timer has been stopped!');
+// }
 
 // Функція для продовження відліку
-function continioInterval() {
-  let timerId = setInterval(countDownTimeToNY, 1000);
-}
+// function continioInterval() {
+//   timerId = setInterval(countDownTimeToNY, 1000);
+// }
 
 // * Код из сайта, в старом образце
 
