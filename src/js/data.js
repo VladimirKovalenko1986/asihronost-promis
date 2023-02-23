@@ -174,6 +174,7 @@
 
 const timeEL = document.getElementById('time');
 const stopBtnEl = document.getElementById('stopBtn');
+const continueBtnEl = document.getElementById('continueBtn');
 
 // Новий рік - 1 січня 00:00 2024
 // Сьогоднішня дата - 22 лютого 20:20 2023
@@ -189,9 +190,10 @@ const newYearDate = new Date(`Jan 1, ${new Date().getFullYear() + 1}`);
 // Для того щоб був таймер відразу визиваємо функцію перед інтервалом
 countDownTimeToNY();
 
-const timerId = setInterval(countDownTimeToNY, 1000);
+let timerId = setInterval(countDownTimeToNY, 1000);
 
 stopBtnEl.addEventListener('click', stopInterval);
+continueBtnEl.addEventListener('click', continioInterval);
 
 function countDownTimeToNY() {
   // Отрімуваємо поточну дату
@@ -202,7 +204,7 @@ function countDownTimeToNY() {
   // Отримуємо різницю - скількі мсек лишилось до нового року
   const diff = newYearDate - now;
 
-  // Витюгуємо кількіть днів, годин, хв, сек
+  // Витягуємо кількіть днів, годин, хв, сек
   //???????????????????????????? сек /  хв / год / дні
   const days = Math.floor(diff / (1000 * 60 * 60 * 24));
   const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
@@ -221,6 +223,11 @@ function countDownTimeToNY() {
 function stopInterval() {
   clearInterval(timerId);
   alert('The timer has been stopped!');
+}
+
+// Функція для продовження відліку
+function continioInterval() {
+  let timerId = setInterval(countDownTimeToNY, 1000);
 }
 
 // * Код из сайта, в старом образце
