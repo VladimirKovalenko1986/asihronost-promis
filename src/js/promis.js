@@ -76,20 +76,99 @@
 
 // * Промисификация функции
 
-const makeOrder = dish => {
-  const DALEY = 1000;
+// const makeOrder = dish => {
+//   const DALEY = 1000;
 
-  setTimeout(() => {}, DALEY);
-};
+//   return new Promise((resolve, reject) => {
+//     const passed = Math.random() > 0.5;
 
-makeOrder('пирожок');
+//     setTimeout(() => {
+//       if (passed) {
+//         resolve('Вот ваше блюдо!');
+//       }
+//       reject('Извини закончились продукты!');
+//     }, DALEY);
+//   });
+// };
 
-function onMakeOrderSuccess(result) {
-  console.log('onMakeOrderSuccess');
-  console.log(result);
+// makeOrder('пирожок').then(onMakeOrderSuccess).catch(onMakerOrderError);
+
+// function onMakeOrderSuccess(result) {
+//   console.log('onMakeOrderSuccess');
+//   console.log(result);
+// }
+
+// function onMakerOrderError(error) {
+//   console.log('onMakerOrderError');
+//   console.log(error);
+// }
+
+// !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+// * Живой пример
+
+// const makePromise = () => {
+//   return new Promise((resolve, reject) => {
+//     const passed = Math.random() > 0.5;
+
+//     setTimeout(() => {
+//       if (passed) {
+//         resolve('Ку-ку это resolve');
+//       }
+//       reject('Ку-ку это reject');
+//     }, 2000);
+//   });
+// };
+
+// makePromise()
+//   .then(result => console.log(result))
+//   .catch(error => console.log(error));
+
+// !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+// * Иподром
+
+// Набор коней
+const horses = [
+  'Secretariat',
+  'Eclips',
+  'West Australian',
+  'Flying Fox',
+  'Seabiscult',
+];
+
+console.log('Заезд начался ставки не принимаються!');
+
+// Функция которая будет запускать одного коня
+function run(horse) {
+  return new Promise(resolve => {
+    const time = getRandomTime(2000, 3500);
+
+    setTimeout(() => {
+      resolve({ horse, time });
+    }, time);
+  });
 }
 
-function onMakerOrderError(error) {
-  console.log('onMakerOrderError');
-  console.log(error);
+// run(horses[0]).then(x => console.log(x));
+// run(horses[1]).then(x => console.log(x));
+
+// Массив промисов
+const promises = horses.map(run);
+console.log('🚀 ~ promises:', promises);
+
+// * Обработка массивов промисов
+
+// race - берет первый который выполнился не дожидаясь всех остальных
+Promise.race(promises).then(({ horse, time }) => {
+  console.log(`Победитель ${horse}, финишировал за ${time} времени`);
+});
+
+// функция случайной лошади
+
+function getRandomTime(min, max) {
+  return Math.floor(Math.random() * (max - min + 1) + min);
 }
+
+// console.log(
+//   'Заезд окончен, принимаються ставки',
+//   'color: blue; font-size: 14px;'
+// );
