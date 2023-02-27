@@ -135,10 +135,67 @@ const horses = [
   'Seabiscult',
 ];
 
-console.log(
-  '%c Заезд начался ставки не принимаються!',
-  'color: brown; font-size: 14px;'
-);
+//Переменная для автоматической простановки порядкового номера
+let raceCounter = 0;
+
+const refs = {
+  startBtn: document.querySelector('.js-race-btn'),
+  winnerFiled: document.querySelector('.winner'),
+  progressField: document.querySelector('.progress'),
+  tableBody: document.querySelector('.js-results-table > tbody'),
+};
+
+// По нажатию на кнопку запускаем всх наших лошадей
+
+refs.startBtn.addEventListener('click', onStart);
+
+// * Делаем функции
+
+function onStart() {
+  raceCounter += 1;
+  // Массив промисов
+  const promises = horses.map(run);
+  // Перед заездом очищаем строку победителя
+  updateWinnerFiled('');
+  // Записываем в текст что заезд начался
+  updateProgresFiled('Заезд начался ставки не принимаються!');
+
+  determineWinner(promises);
+  waiForAll(promises);
+}
+
+function updateWinnerFiled(message) {
+  refs.winnerFiled.textContent = message;
+}
+
+function updateProgresFiled(message) {
+  refs.progressField.textContent = message;
+}
+
+// Чтобы обновлялась таблица
+function updateResultTable({ horse, time, raceCounter }) {
+  const tr = `<tr><td>${raceCounter}</td><td>${horse}</td><td>${time}</td></tr>`;
+  refs.tableBody.insertAdjacentHTML('beforeend', tr);
+}
+
+function determineWinner(horsesP) {
+  Promise.race(horsesP).then(({ horse, time }) => {
+    updateWinnerFiled(`Победитель ${horse}, финишировал за ${time} времени`);
+    updateResultTable({ horse, time, raceCounter });
+  });
+}
+
+function waiForAll(horsesP) {
+  Promise.all(horsesP).then(x => {
+    updateProgresFiled('Заезд окончен, принимаються ставки');
+  });
+}
+//???????????????????????????????????????????????????????????????
+
+// console.log(
+//   '%c Заезд начался ставки не принимаються!',
+//   'color: brown; font-size: 14px;'
+// );
 
 // Функция которая будет запускать одного коня
 function run(horse) {
@@ -154,27 +211,23 @@ function run(horse) {
 // run(horses[0]).then(x => console.log(x));
 // run(horses[1]).then(x => console.log(x));
 
-// Массив промисов
-const promises = horses.map(run);
-console.log('🚀 ~ promises:', promises);
-
 // * Обработка массивов промисов
 
 // race - берет первый который выполнился не дожидаясь всех остальных
-Promise.race(promises).then(({ horse, time }) => {
-  console.log(
-    `%c Победитель ${horse}, финишировал за ${time} времени`,
-    'color: blue; font-size: 14px;'
-  );
-});
+// Promise.race(promises).then(({ horse, time }) => {
+//   console.log(
+//     `%c Победитель ${horse}, финишировал за ${time} времени`,
+//     'color: blue; font-size: 14px;'
+//   );
+// });
 // all - берет все которые находтся в масиве
-Promise.all(promises).then(x => {
-  console.log(x);
-  console.log(
-    '%c Заезд окончен, принимаються ставки',
-    'color: red; fond-size: 14px;'
-  );
-});
+// Promise.all(promises).then(x => {
+//   console.log(x);
+//   console.log(
+//     '%c Заезд окончен, принимаються ставки',
+//     'color: red; fond-size: 14px;'
+//   );
+// });
 
 // функция случайной лошади
 
