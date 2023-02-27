@@ -1,2 +1,0 @@
-console.log("Заезд начался ставки не принимаються!");const o=["Secretariat","Eclips","West Australian","Flying Fox","Seabiscult"].map((function(o){return new Promise((e=>{const s=(t=2e3,r=3500,Math.floor(Math.random()*(r-t+1)+t));var t,r;setTimeout((()=>{e({horse:o,time:s})}),s)}))}));console.log("🚀 ~ promises:",o),Promise.race(o).then((({horse:o,time:e})=>{console.log(`Победитель ${o}, финишировал за ${e} времени`)}));
-//# sourceMappingURL=index.50d6d0f0.js.map
