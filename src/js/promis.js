@@ -127,69 +127,69 @@
 // * Иподром
 
 // Набор коней
-const horses = [
-  'Secretariat',
-  'Eclips',
-  'West Australian',
-  'Flying Fox',
-  'Seabiscult',
-];
+// const horses = [
+//   'Secretariat',
+//   'Eclips',
+//   'West Australian',
+//   'Flying Fox',
+//   'Seabiscult',
+// ];
 
 //Переменная для автоматической простановки порядкового номера
-let raceCounter = 0;
+// let raceCounter = 0;
 
-const refs = {
-  startBtn: document.querySelector('.js-race-btn'),
-  winnerFiled: document.querySelector('.winner'),
-  progressField: document.querySelector('.progress'),
-  tableBody: document.querySelector('.js-results-table > tbody'),
-};
+// const refs = {
+//   startBtn: document.querySelector('.js-race-btn'),
+//   winnerFiled: document.querySelector('.winner'),
+//   progressField: document.querySelector('.progress'),
+//   tableBody: document.querySelector('.js-results-table > tbody'),
+// };
 
 // По нажатию на кнопку запускаем всх наших лошадей
 
-refs.startBtn.addEventListener('click', onStart);
+// refs.startBtn.addEventListener('click', onStart);
 
 // * Делаем функции
 
-function onStart() {
-  raceCounter += 1;
-  // Массив промисов
-  const promises = horses.map(run);
-  // Перед заездом очищаем строку победителя
-  updateWinnerFiled('');
-  // Записываем в текст что заезд начался
-  updateProgresFiled('Заезд начался ставки не принимаються!');
+// function onStart() {
+//   raceCounter += 1;
+// Массив промисов
+// const promises = horses.map(run);
+// Перед заездом очищаем строку победителя
+// updateWinnerFiled('');
+// Записываем в текст что заезд начался
+//   updateProgresFiled('Заезд начался ставки не принимаються!');
 
-  determineWinner(promises);
-  waiForAll(promises);
-}
+//   determineWinner(promises);
+//   waiForAll(promises);
+// }
 
-function updateWinnerFiled(message) {
-  refs.winnerFiled.textContent = message;
-}
+// function updateWinnerFiled(message) {
+//   refs.winnerFiled.textContent = message;
+// }
 
-function updateProgresFiled(message) {
-  refs.progressField.textContent = message;
-}
+// function updateProgresFiled(message) {
+//   refs.progressField.textContent = message;
+// }
 
 // Чтобы обновлялась таблица
-function updateResultTable({ horse, time, raceCounter }) {
-  const tr = `<tr><td>${raceCounter}</td><td>${horse}</td><td>${time}</td></tr>`;
-  refs.tableBody.insertAdjacentHTML('beforeend', tr);
-}
+// function updateResultTable({ horse, time, raceCounter }) {
+//   const tr = `<tr><td>${raceCounter}</td><td>${horse}</td><td>${time}</td></tr>`;
+//   refs.tableBody.insertAdjacentHTML('beforeend', tr);
+// }
 
-function determineWinner(horsesP) {
-  Promise.race(horsesP).then(({ horse, time }) => {
-    updateWinnerFiled(`Победитель ${horse}, финишировал за ${time} времени`);
-    updateResultTable({ horse, time, raceCounter });
-  });
-}
+// function determineWinner(horsesP) {
+//   Promise.race(horsesP).then(({ horse, time }) => {
+//     updateWinnerFiled(`Победитель ${horse}, финишировал за ${time} времени`);
+//     updateResultTable({ horse, time, raceCounter });
+//   });
+// }
 
-function waiForAll(horsesP) {
-  Promise.all(horsesP).then(x => {
-    updateProgresFiled('Заезд окончен, принимаються ставки');
-  });
-}
+// function waiForAll(horsesP) {
+//   Promise.all(horsesP).then(x => {
+//     updateProgresFiled('Заезд окончен, принимаються ставки');
+//   });
+// }
 //???????????????????????????????????????????????????????????????
 
 // console.log(
@@ -198,15 +198,15 @@ function waiForAll(horsesP) {
 // );
 
 // Функция которая будет запускать одного коня
-function run(horse) {
-  return new Promise(resolve => {
-    const time = getRandomTime(2000, 3500);
+// function run(horse) {
+//   return new Promise(resolve => {
+//     const time = getRandomTime(2000, 3500);
 
-    setTimeout(() => {
-      resolve({ horse, time });
-    }, time);
-  });
-}
+//     setTimeout(() => {
+//       resolve({ horse, time });
+//     }, time);
+//   });
+// }
 
 // run(horses[0]).then(x => console.log(x));
 // run(horses[1]).then(x => console.log(x));
@@ -231,6 +231,8 @@ function run(horse) {
 
 // функция случайной лошади
 
-function getRandomTime(min, max) {
-  return Math.floor(Math.random() * (max - min + 1) + min);
-}
+// function getRandomTime(min, max) {
+//   return Math.floor(Math.random() * (max - min + 1) + min);
+// }
+
+// !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
