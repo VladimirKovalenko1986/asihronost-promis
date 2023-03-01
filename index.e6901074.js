@@ -1,0 +1,2 @@
+console.log("Request data ..."),new Promise((function(n,o){setTimeout((function(){console.log("Prepering data ...");var e={id:1,text:"lorem ipsum dolor sit amet.",statu:"inpotant"};e.id||o(new Error("No id!")),n(e)}),2e3)})).then((function(n){return new Promise((function(o){console.log("Data chanched"),n.statu="ordinary",o(n)}))})).then((function(n){return console.log(n)})).catch((function(n){return console.error(n)})).finally((function(){return console.log("Promise end")}));
+//# sourceMappingURL=index.e6901074.js.map
