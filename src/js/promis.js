@@ -236,3 +236,67 @@
 // }
 
 // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+// * Приклад - запит на сервер
+
+// Без  промісів
+// console.log('Request data ...');
+
+// setTimeout(() => {
+//   console.log('Prepering data ...');
+
+//   const data = {
+//     id: 1,
+//     text: 'lorem ipsum dolor sit amet.',
+//     statu: 'inpotant',
+//   };
+
+//   setTimeout(() => {
+//     console.log('Data received:', data);
+//   }, 2000);
+// }, 2000);
+
+// З промісами
+console.log('Request data ...');
+const promise = new Promise((res, rej) => {
+  setTimeout(() => {
+    console.log('Prepering data ...');
+    const data = {
+      id: 1,
+      text: 'lorem ipsum dolor sit amet.',
+      statu: 'inpotant',
+    };
+
+    if (!data.id) {
+      rej(new Error('No id!'));
+    }
+    res(data);
+  }, 2000);
+});
+
+// Не дуже гарний варіант
+// promise
+//   .then(data => {
+//     const p = new Promise(res => {
+//       console.log('Data chanched');
+//       data.statu = 'ordinary';
+//       res(data);
+//     });
+
+//     p.then(data => console.log(data));
+//   })
+//   .catch(err => console.log(err))
+//   .finally(() => console.log('Promise end'));
+
+// Ідеальний варіант
+
+promise
+  .then(data => {
+    return new Promise(res => {
+      console.log('Data chanched');
+      data.statu = 'ordinary';
+      res(data);
+    });
+  })
+  .then(data => console.log(data))
+  .catch(err => console.error(err))
+  .finally(() => console.log('Promise end'));
