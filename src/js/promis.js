@@ -256,22 +256,22 @@
 // }, 2000);
 
 // З промісами
-console.log('Request data ...');
-const promise = new Promise((res, rej) => {
-  setTimeout(() => {
-    console.log('Prepering data ...');
-    const data = {
-      id: 1,
-      text: 'lorem ipsum dolor sit amet.',
-      statu: 'inpotant',
-    };
+// console.log('Request data ...');
+// const promise = new Promise((res, rej) => {
+//   setTimeout(() => {
+//     console.log('Prepering data ...');
+//     const data = {
+//       id: 1,
+//       text: 'lorem ipsum dolor sit amet.',
+//       statu: 'inpotant',
+//     };
 
-    if (!data.id) {
-      rej(new Error('No id!'));
-    }
-    res(data);
-  }, 2000);
-});
+//     if (!data.id) {
+//       rej(new Error('No id!'));
+//     }
+//     res(data);
+//   }, 2000);
+// });
 
 // Не дуже гарний варіант
 // promise
@@ -289,14 +289,16 @@ const promise = new Promise((res, rej) => {
 
 // Ідеальний варіант
 
-promise
-  .then(data => {
-    return new Promise(res => {
-      console.log('Data chanched');
-      data.statu = 'ordinary';
-      res(data);
-    });
-  })
-  .then(data => console.log(data))
-  .catch(err => console.error(err))
-  .finally(() => console.log('Promise end'));
+// promise
+//   .then(data => {
+//     return new Promise(res => {
+//       console.log('Data chanched');
+//       data.statu = 'ordinary';
+//       res(data);
+//     });
+//   })
+//   .then(data => console.log(data))
+//   .catch(err => console.error(err))
+//   .finally(() => console.log('Promise end'));
+
+// !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
