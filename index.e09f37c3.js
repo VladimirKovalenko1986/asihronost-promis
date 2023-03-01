@@ -1,2 +1,0 @@
-console.log("Request data ...");new Promise(((o,e)=>{setTimeout((()=>{console.log("Prepering data ...");const t={id:1,text:"lorem ipsum dolor sit amet.",statu:"inpotant"};t.id||e(new Error("No id!")),o(t)}),2e3)})).then((o=>new Promise((e=>{console.log("Data chanched"),o.statu="ordinary",e(o)})))).then((o=>console.log(o))).catch((o=>console.error(o))).finally((()=>console.log("Promise end")));
-//# sourceMappingURL=index.e09f37c3.js.map
